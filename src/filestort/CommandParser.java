@@ -1,4 +1,4 @@
 package filestort;
 
-public class CommandParser {
+public interface CommandParser {
 }
