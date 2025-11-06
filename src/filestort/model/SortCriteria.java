@@ -1,4 +1,10 @@
 package filestort.model;
 
-public class SortCriteria {
+public enum SortCriteria {
+    ALPHABETICAL,
+    REVERSE_ALPHABETICAL,
+    CREATED,
+    REVERSE_CREATED,
+    MODIFIED,
+    REVERSE_MODIFIED
 }
