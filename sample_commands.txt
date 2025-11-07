@@ -1,0 +1,10 @@
+help
+size report.txt
+type config.json
+alphabetical report.txt config.json data.csv
+reverse_alphabetical report.txt config.json data.csv
+created report.txt config.json data.csv
+reverse_created report.txt config.json data.csv
+modified report.txt config.json data.csv
+reverse_modified report.txt config.json data.csv
+delete archive.txt
