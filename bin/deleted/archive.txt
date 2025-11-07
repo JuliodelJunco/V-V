@@ -1,0 +1,1 @@
+Legacy notes to be relocated during delete command.
