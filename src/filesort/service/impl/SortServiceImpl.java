@@ -1,5 +1,7 @@
-package filesort.service;
+package filesort.service.impl;
 import filesort.model.SortCriteria;
+import filesort.service.SortService;
+
 import java.io.IOException;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.Files;
@@ -11,7 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class SortServiceImpl implements SortService {
+public class SortServiceImpl implements SortService {
     @Override
     public List<String> sortFiles(List<String> filePaths, SortCriteria criteria) throws IOException {
         List<PathWithAttributes> paths = preparePaths(filePaths);
@@ -44,7 +46,6 @@ class SortServiceImpl implements SortService {
             case REVERSE_CREATED:
                 return Comparator.comparing(this::creationTime).reversed();
             case MODIFIED:
-                // Most recently modified first
                 return Comparator.comparing(this::lastModifiedTime).reversed();
             case REVERSE_MODIFIED:
                 return Comparator.comparing(this::lastModifiedTime);

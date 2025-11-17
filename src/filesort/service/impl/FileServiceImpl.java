@@ -1,9 +1,11 @@
-package filesort.service;
+package filesort.service.impl;
+
+import filesort.service.FileService;
 
 import java.io.File;
 import java.io.IOException;
 
-class FileServiceImpl implements FileService{
+public class FileServiceImpl implements FileService {
     /**
      * Calculates and formats the size of a given file.
      *
@@ -11,6 +13,7 @@ class FileServiceImpl implements FileService{
      * @return A formatted string representing the size (e.g., "15.3 MB").
      * @throws IOException if the file does not exist or cannot be read.
      */
+    @Override
     public String getFileSize(String filePath) throws IOException {
         File sizeFile = new File(filePath);
         if (sizeFile.exists()){
@@ -31,6 +34,7 @@ class FileServiceImpl implements FileService{
      * @return The file extension (e.g., "txt").
      * @throws IOException if the file does not exist.
      */
+    @Override
     public String getFileType(String filePath) throws IOException{
         File typeFile = new File(filePath);
         if (typeFile.exists()){
@@ -45,6 +49,7 @@ class FileServiceImpl implements FileService{
      * @param filePath The path to the file to be deleted.
      * @throws IOException if the file does not exist or the operation fails.
      */
+    @Override
     public void deleteFile(String filePath) throws IOException{
         File deletableFile = new File(filePath);
         if (deletableFile.exists()){
