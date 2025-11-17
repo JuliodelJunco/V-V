@@ -1,4 +1,4 @@
-package filestort.model;
+package filesort.model;
 
 public enum SortCriteria {
     ALPHABETICAL,

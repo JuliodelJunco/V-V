@@ -1,6 +1,6 @@
-package filestort.service;
+package filesort.service;
 
-import filestort.model.SortCriteria;
+import filesort.model.SortCriteria;
 
 import java.io.IOException;
 import java.util.List;

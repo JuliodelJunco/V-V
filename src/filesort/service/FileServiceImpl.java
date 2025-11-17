@@ -1,9 +1,9 @@
-package filestort.service;
+package filesort.service;
 
 import java.io.File;
 import java.io.IOException;
 
-class FileService {
+class FileServiceImpl implements FileService{
     /**
      * Calculates and formats the size of a given file.
      *
@@ -41,11 +41,11 @@ class FileService {
     }
 
     /**
-     * Moves a given file to the "bin/deleted" directory.
+     * Deletes a file
      * @param filePath The path to the file to be deleted.
      * @throws IOException if the file does not exist or the operation fails.
      */
-    void deleteFile(String filePath) throws IOException{
+    public void deleteFile(String filePath) throws IOException{
         File deletableFile = new File(filePath);
         if (deletableFile.exists()){
             boolean deleted = deletableFile.delete();

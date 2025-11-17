@@ -1,4 +1,4 @@
-package filestort;
+package filesort;
 
 public interface CommandParser {
 }
