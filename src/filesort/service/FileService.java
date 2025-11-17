@@ -1,4 +1,4 @@
-package filestort.service;
+package filesort.service;
 
 import java.io.IOException;
 

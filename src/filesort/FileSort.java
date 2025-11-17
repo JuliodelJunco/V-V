@@ -1,4 +1,4 @@
-package filestort;
+package filesort;
 
 public class FileSort {
     public static void main(String[] args) {

@@ -1,9 +1,9 @@
-package filestort.service;
-
-import filestort.model.SortCriteria;
+package filesort.service;
 
 import java.io.IOException;
 import java.util.List;
+
+import filesort.model.SortCriteria;
 
 public interface SortService {
     /**
