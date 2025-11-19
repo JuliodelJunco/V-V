@@ -46,16 +46,18 @@ public class FileServiceImpl implements FileService {
     }
 
     /**
-     * Deletes a file
+     * Sends file to bin
      * @param filePath The path to the file to be deleted.
+     * @return Boolean if correctly deleted
      * @throws IOException if the file does not exist or the operation fails.
      */
     @Override
-    public void deleteFile(String filePath) throws IOException{
+    public Boolean deleteFile(String filePath) throws IOException{
         File deletableFile = new File(filePath);
         if (deletableFile.exists()){
             boolean deleted = Desktop.getDesktop().moveToTrash(deletableFile);
             if(!deleted) throw new IOException("An error occurred while deleting");
+            else return deleted;
         }else throw new IOException("No file given. Please provide a file.");
     }
 }
