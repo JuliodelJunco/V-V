@@ -20,9 +20,10 @@ public interface FileService {
     String getFileType(String filePath) throws IOException;
 
     /**
-     * Deletes a file
+     * Sends file to bin
      * @param filePath The path to the file to be deleted.
+     * @return Boolean if correctly deleted
      * @throws IOException if the file does not exist or the operation fails.
      */
-    void deleteFile(String filePath) throws IOException;
+    Boolean deleteFile(String filePath) throws IOException;
 }

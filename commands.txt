@@ -1,0 +1,22 @@
+help
+size file1.txt
+size
+type file2.json
+type
+delete file3.csv
+delete
+
+alphabetical file1.txt file2.json
+reverse_alphabetical file1.txt file2.json file3.csv
+
+created file1.txt file2.json file3.csv file4.txt
+reverse_created file1.txt file2.json file3.csv file4.txt file5.json
+
+modified file1.txt file2.json
+reverse_modified file1.txt file2.json file3.csv file4.txt file5.json file6.csv file7.txt file8.json file9.txt file10.csv
+reverse_modified file1.txt file2.json file3.csv file4.txt file5.json file6.csv file7.txt file8.json file9.txt file10.csv file11.txt
+
+alphabetical file1.txt
+alphabetical file1.txt file2.json file3.csv file4.txt file5.json file6.csv file7.txt file8.json file9.txt file10.csv file11.txt
+
+unknown_command file1.txt
