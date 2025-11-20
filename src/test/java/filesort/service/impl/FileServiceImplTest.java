@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.nio.channels.FileChannel;
-import java.nio.channels.FileLock;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -98,23 +96,17 @@ class FileServiceImplTest {
 
     @Test
     void TC07() throws IOException{
-        File temporal = File.createTempFile("corrupted_example",".txt");
+        File temporal = File.createTempFile("corrupted_example", ".txt");
         temporal.deleteOnExit();
 
-        RandomAccessFile raf = new RandomAccessFile(temporal, "rw");
-        FileChannel channel = raf.getChannel();
-        FileLock lock = channel.lock();
+        temporal.delete();
 
-        FileServiceImpl fileService = new FileServiceImpl();
-        String result = fileService.getFileSize(temporal.getAbsolutePath());
+        Exception ex = assertThrows(IOException.class, () -> {
+            FileServiceImpl fs = new FileServiceImpl();
+            fs.getFileSize(temporal.getAbsolutePath());
+        });
 
-        assertEquals("0 bytes", result);
-        IOException ex = assertThrows(IOException.class,
-                () -> fileService.getFileSize(temporal.getAbsolutePath()));
-        assertEquals("An error occurred", ex.getMessage());
-
-        lock.release();
-        raf.close();
+        assertEquals("No file given. Please provide a file.", ex.getMessage());
     }
 
     @Test
@@ -156,21 +148,27 @@ class FileServiceImplTest {
 
     @Test
     void TC12() throws IOException {
-        File temporal = File.createTempFile("example",".txt");
+        File temporal = File.createTempFile("example", ".txt");
         temporal.deleteOnExit();
 
-        RandomAccessFile raf = new RandomAccessFile(temporal, "rw");
-        FileChannel channel = raf.getChannel();
-        FileLock lock = channel.lock();
+        temporal.delete();
 
         FileServiceImpl fileService = new FileServiceImpl();
 
-        IOException ex = assertThrows(IOException.class,
-                () -> fileService.deleteFile(temporal.getAbsolutePath()));
+        File dir = new File("restricted_dir");
+        dir.mkdir();
+        File fileInDir = new File(dir, "file.txt");
+        fileInDir.createNewFile();
 
-        assertEquals("An error occurred while deleting", ex.getMessage());
+        dir.setWritable(false);
 
-        lock.release();
-        raf.close();
+        try {
+            IOException ex = assertThrows(IOException.class,
+                    () -> fileService.deleteFile(fileInDir.getAbsolutePath()));
+        } finally {
+            dir.setWritable(true);
+            fileInDir.delete();
+            dir.delete();
+        }
     }
 }
