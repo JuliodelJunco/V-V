@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,9 +96,11 @@ public class SortServiceImplTest {
 
         temporal = new File(System.getProperty("java.io.tmpdir"), "first_example.txt");
         temporal.createNewFile();
+        Files.setAttribute(temporal.toPath(),"basic:creationTime", FileTime.fromMillis(1000));
 
         temporal2 = new File(System.getProperty("java.io.tmpdir"), "last_example.txt");
         temporal2.createNewFile();
+        Files.setAttribute(temporal2.toPath(),"basic:creationTime", FileTime.fromMillis(2000));
 
         List<String> filepaths = new ArrayList<>();
         filepaths.add(temporal2.getAbsolutePath());
@@ -113,9 +117,11 @@ public class SortServiceImplTest {
 
         temporal = new File(System.getProperty("java.io.tmpdir"), "first_example.txt");
         temporal.createNewFile();
+        Files.setAttribute(temporal.toPath(),"basic:creationTime", FileTime.fromMillis(1000));
 
         temporal2 = new File(System.getProperty("java.io.tmpdir"), "last_example.txt");
         temporal2.createNewFile();
+        Files.setAttribute(temporal2.toPath(),"basic:creationTime", FileTime.fromMillis(2000));
 
         List<String> filepaths = new ArrayList<>();
         filepaths.add(temporal.getAbsolutePath());

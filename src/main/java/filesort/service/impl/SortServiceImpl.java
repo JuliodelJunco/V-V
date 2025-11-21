@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SortServiceImpl implements SortService {
+
     @Override
     public List<String> sortFiles(List<String> filePaths, SortCriteria criteria) throws IOException {
         List<PathWithAttributes> paths = preparePaths(filePaths);
@@ -23,6 +24,7 @@ public class SortServiceImpl implements SortService {
                 .map(pathWithAttributes -> pathWithAttributes.path.toString())
                 .collect(Collectors.toList());
     }
+
     private List<PathWithAttributes> preparePaths(List<String> filePaths) throws IOException {
         List<PathWithAttributes> paths = new ArrayList<>();
         for (String filePath : filePaths) {
@@ -35,6 +37,7 @@ public class SortServiceImpl implements SortService {
         }
         return paths;
     }
+
     private Comparator<PathWithAttributes> buildComparator(SortCriteria criteria) {
         switch (criteria) {
             case ALPHABETICAL:
@@ -53,12 +56,15 @@ public class SortServiceImpl implements SortService {
                 throw new IllegalArgumentException("Unsupported sort criteria: " + criteria);
         }
     }
+
     private FileTime creationTime(PathWithAttributes pathWithAttributes) {
         return pathWithAttributes.attributes.creationTime();
     }
+
     private FileTime lastModifiedTime(PathWithAttributes pathWithAttributes) {
         return pathWithAttributes.attributes.lastModifiedTime();
     }
+
     private static final class PathWithAttributes {
         private final Path path;
         private final BasicFileAttributes attributes;
