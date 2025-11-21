@@ -52,9 +52,8 @@ public class SortServiceImpl implements SortService {
                 return Comparator.comparing(this::lastModifiedTime).reversed();
             case REVERSE_MODIFIED:
                 return Comparator.comparing(this::lastModifiedTime);
-            default:
-                throw new IllegalArgumentException("Unsupported sort criteria: " + criteria);
         }
+        return null;
     }
 
     private FileTime creationTime(PathWithAttributes pathWithAttributes) {

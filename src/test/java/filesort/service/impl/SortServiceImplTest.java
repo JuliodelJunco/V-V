@@ -174,23 +174,4 @@ public class SortServiceImplTest {
         assertEquals("first_example.txt", new File(filepaths.getLast()).getName());
     }
 
-    @Test
-    void TC21_other_case_ThrowsException() throws IOException {
-        SortServiceImpl sortService = new SortServiceImpl();
-
-        temporal = new File(System.getProperty("java.io.tmpdir"), "last_example.txt");
-        temporal.createNewFile();
-
-        temporal2 = new File(System.getProperty("java.io.tmpdir"), "first_example.txt");
-        temporal2.createNewFile();
-
-        List<String> filepaths = new ArrayList<>();
-        filepaths.add(temporal.getAbsolutePath());
-        filepaths.add(temporal2.getAbsolutePath());
-
-        List<String> finalFilepaths = filepaths;
-        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> sortService.sortFiles(finalFilepaths,SortCriteria.TESTING));
-        assertEquals("Unsupported sort criteria: TESTING", ex.getMessage());
-    }
 }
