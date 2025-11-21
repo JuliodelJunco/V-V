@@ -44,13 +44,13 @@ class FileSortTest {
     }
 
     @Test
-    void TC35_handleSize_NoArgs_PrintsError() throws Exception {
+    void TC34_handleSize_NoArgs_PrintsError() throws Exception {
         invokeExecuteLine("size");
         assertEquals("No file given. Please provide a file.", outContent.toString().trim());
     }
 
     @Test
-    void TC36_handleSize_ValidFile_PrintsSize() throws Exception {
+    void TC35_handleSize_ValidFile_PrintsSize() throws Exception {
         File temp = File.createTempFile("example", ".txt");
         temp.deleteOnExit();
         try (RandomAccessFile raf = new RandomAccessFile(temp, "rw")) {
@@ -61,13 +61,13 @@ class FileSortTest {
     }
 
     @Test
-    void TC37_handleType_NoArgs_PrintsError() throws Exception {
+    void TC36_handleType_NoArgs_PrintsError() throws Exception {
         invokeExecuteLine("type");
         assertEquals("No file given. Please provide a file.", outContent.toString().trim());
     }
 
     @Test
-    void TC38_handleType_ValidFile_PrintsType() throws Exception {
+    void TC37_handleType_ValidFile_PrintsType() throws Exception {
         File temp = File.createTempFile("example", ".txt");
         temp.deleteOnExit();
         invokeExecuteLine("type " + temp.getAbsolutePath());
@@ -75,13 +75,13 @@ class FileSortTest {
     }
 
     @Test
-    void TC39_handleDelete_NoArgs_PrintsError() throws Exception {
+    void TC38_handleDelete_NoArgs_PrintsError() throws Exception {
         invokeExecuteLine("delete");
         assertEquals("No file given. Please provide a file.", outContent.toString().trim());
     }
 
     @Test
-    void TC40_handleDelete_ValidFile_DeletesFile() throws Exception {
+    void TC39_handleDelete_ValidFile_DeletesFile() throws Exception {
         File temp = File.createTempFile("todelete", ".txt");
         assertTrue(temp.exists());
         invokeExecuteLine("delete " + temp.getAbsolutePath());
@@ -89,7 +89,7 @@ class FileSortTest {
     }
 
     @Test
-    void TC41_handleSort_TooFewArgs_PrintsError() throws Exception {
+    void TC40_handleSort_TooFewArgs_PrintsError() throws Exception {
         File temp = File.createTempFile("file_a", ".txt");
         temp.deleteOnExit();
         invokeExecuteLine("alphabetical " + temp.getAbsolutePath());
@@ -97,7 +97,7 @@ class FileSortTest {
     }
 
     @Test
-    void TC42_handleSort_TooManyArgs_PrintsError() throws Exception {
+    void TC41_handleSort_TooManyArgs_PrintsError() throws Exception {
         StringBuilder sb = new StringBuilder("alphabetical");
         for (int i = 0; i < 11; i++) {
             File t = File.createTempFile("file_" + i, ".txt");
@@ -109,7 +109,7 @@ class FileSortTest {
     }
 
     @Test
-    void TC43_handleSort_ValidArgs_PrintsSorted() throws Exception {
+    void TC42_handleSort_ValidArgs_PrintsSorted() throws Exception {
         File f1 = File.createTempFile("file_a", ".txt");
         File f2 = File.createTempFile("file_b", ".txt");
         f1.deleteOnExit();
@@ -121,18 +121,18 @@ class FileSortTest {
     }
 
     @Test
-    void TC44_main_NoArgs_PrintsUsage() throws IOException {
+    void TC43_main_NoArgs_PrintsUsage() throws IOException {
         FileSort.main(new String[]{});
         assertEquals("Usage: FileSort <input-file>", outContent.toString().trim());
     }
 
     @Test
-    void TC45_main_NullArg_ThrowsException() {
+    void TC44_main_NullArg_ThrowsException() {
         assertThrows(NullPointerException.class, () -> FileSort.main(null));
     }
 
     @Test
-    void TC46_main_EmptyFile_EndsGracefully() throws IOException {
+    void TC45_main_EmptyFile_EndsGracefully() throws IOException {
         File emptyFile = File.createTempFile("empty", ".txt");
         emptyFile.deleteOnExit();
         FileSort.main(new String[]{emptyFile.getAbsolutePath()});
@@ -140,7 +140,7 @@ class FileSortTest {
     }
 
     @Test
-    void TC47_main_ValidFile_ExecutesCommands() throws IOException {
+    void TC46_main_ValidFile_ExecutesCommands() throws IOException {
         File target = File.createTempFile("target", ".txt");
         target.deleteOnExit();
         File cmdFile = File.createTempFile("cmds", ".txt");
@@ -153,19 +153,19 @@ class FileSortTest {
     }
 
     @Test
-    void TC48_executeLine_NullLine_PrintsError() throws Exception {
+    void TC47_executeLine_NullLine_PrintsError() throws Exception {
         invokeExecuteLine(null);
         assertEquals("Empty command line", outContent.toString().trim());
     }
 
     @Test
-    void TC49_handleHelp_ValidCommand_PrintsHelp() throws Exception {
+    void TC48_handleHelp_ValidCommand_PrintsHelp() throws Exception {
         invokeExecuteLine("help");
         assertTrue(outContent.toString().contains("Available commands:"));
     }
 
     @Test
-    void TC50_handleSize_ValidFile_PrintsSize() throws Exception {
+    void TC49_handleSize_ValidFile_PrintsSize() throws Exception {
         File temp = File.createTempFile("example", ".txt");
         temp.deleteOnExit();
         try (RandomAccessFile raf = new RandomAccessFile(temp, "rw")) {
@@ -176,7 +176,7 @@ class FileSortTest {
     }
 
     @Test
-    void TC51_handleType_ValidFile_PrintsType() throws Exception {
+    void TC50_handleType_ValidFile_PrintsType() throws Exception {
         File temp = File.createTempFile("example", ".txt");
         temp.deleteOnExit();
         invokeExecuteLine("type " + temp.getAbsolutePath());
@@ -184,7 +184,7 @@ class FileSortTest {
     }
 
     @Test
-    void TC52_handleDelete_ValidFile_DeletesFile() throws Exception {
+    void TC51_handleDelete_ValidFile_DeletesFile() throws Exception {
         File temp = File.createTempFile("todelete", ".txt");
         assertTrue(temp.exists());
         invokeExecuteLine("delete " + temp.getAbsolutePath());
@@ -192,7 +192,7 @@ class FileSortTest {
     }
 
     @Test
-    void TC53_handleSort_ValidArgs_PrintsSorted() throws Exception {
+    void TC52_handleSort_ValidArgs_PrintsSorted() throws Exception {
         File f1 = File.createTempFile("file_a", ".txt");
         File f2 = File.createTempFile("file_b", ".txt");
         f1.deleteOnExit();

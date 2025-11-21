@@ -39,22 +39,14 @@ public class SortServiceImpl implements SortService {
     }
 
     private Comparator<PathWithAttributes> buildComparator(SortCriteria criteria) {
-        switch (criteria) {
-            case ALPHABETICAL:
-                return Comparator.comparing(path -> path.path.getFileName().toString());
-            case REVERSE_ALPHABETICAL:
-                return Comparator.comparing((PathWithAttributes path) -> path.path.getFileName().toString()).reversed();
-            case CREATED:
-                return Comparator.comparing(this::creationTime);
-            case REVERSE_CREATED:
-                return Comparator.comparing(this::creationTime).reversed();
-            case MODIFIED:
-                return Comparator.comparing(this::lastModifiedTime).reversed();
-            case REVERSE_MODIFIED:
-                return Comparator.comparing(this::lastModifiedTime);
-            default:
-                throw new IllegalArgumentException("Unsupported sort criteria: " + criteria);
-        }
+        return switch (criteria) {
+            case ALPHABETICAL -> Comparator.comparing(path -> path.path.getFileName().toString());
+            case REVERSE_ALPHABETICAL -> Comparator.comparing((PathWithAttributes path) -> path.path.getFileName().toString()).reversed();
+            case CREATED -> Comparator.comparing(this::creationTime);
+            case REVERSE_CREATED -> Comparator.comparing(this::creationTime).reversed();
+            case MODIFIED -> Comparator.comparing(this::lastModifiedTime).reversed();
+            case REVERSE_MODIFIED -> Comparator.comparing(this::lastModifiedTime);
+        };
     }
 
     private FileTime creationTime(PathWithAttributes pathWithAttributes) {

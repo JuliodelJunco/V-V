@@ -7,5 +7,4 @@ public enum SortCriteria {
     REVERSE_CREATED,
     MODIFIED,
     REVERSE_MODIFIED,
-    TESTING
 }
