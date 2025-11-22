@@ -15,6 +15,18 @@ public class FileServiceImpl implements FileService {
      * @throws IOException if the file does not exist or cannot be read.
      */
     @Override
+//    public String getFileSize(String filePath) throws IOException {
+//        File sizeFile = new File(filePath);
+//        if (sizeFile.exists()){
+//            long size = sizeFile.length();
+//            if (size < Math.pow(1024, 1)) return size + " bytes";
+//            else if (size < Math.pow(1024, 2)) return size / Math.pow(1024, 1) + " kilobytes";
+//            else if (size < Math.pow(1024, 3)) return size / Math.pow(1024, 2) + " megabytes";
+//            else if (size < Math.pow(1024, 4)) return size / Math.pow(1024, 3) + " gigabytes";
+//            else if (size >= Math.pow(1024, 4)) return size / Math.pow(1024, 4) + " terabytes";
+//            else throw new IOException("An error occurred");
+//        }else throw new IOException("No file given. Please provide a file.");
+//    }
     public String getFileSize(String filePath) throws IOException {
         File sizeFile = new File(filePath);
         if (sizeFile.exists()){
@@ -27,6 +39,34 @@ public class FileServiceImpl implements FileService {
             else throw new IOException("An error occurred");
         }else throw new IOException("No file given. Please provide a file.");
     }
+//    public String getFileSize(String filePath) throws IOException {
+//        File sizeFile = new File(filePath);
+//
+//        if (!sizeFile.exists()) {
+//            throw new IOException("No file given. Please provide a file.");
+//        }
+//
+//        long size = sizeFile.length();
+//        double kb = Math.pow(1024, 1);
+//        double mb = Math.pow(1024, 2);
+//        double gb = Math.pow(1024, 3);
+//        double tb = Math.pow(1024, 4);
+//
+//        if (size < kb) {
+//            return size + " bytes";
+//        } else if (size < mb) {
+//            return size / kb + " kilobytes";
+//        } else if (size < gb) {
+//            return size / mb + " megabytes";
+//        } else if (size < tb) {
+//            return size / gb + " gigabytes";
+//        } else if(size <= tb){
+//            return size / tb + " terabytes";
+//        }else{
+//            throw new IOException("An error occurred");
+//        }
+//    }
+
 
 
     /**
