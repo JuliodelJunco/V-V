@@ -63,7 +63,6 @@ public class FileSort {
         try {
             ParsedCommand cmd = parser.parse(line);
             switch (cmd.type()) {
-                case HELP -> printHelp();
                 case SIZE -> handleSize(cmd.args(), fileService);
                 case TYPE -> handleType(cmd.args(), fileService);
                 case DELETE -> handleDelete(cmd.args(), fileService);
@@ -108,7 +107,7 @@ public class FileSort {
                                    SortCriteria criteria,
                                    SortService sortService) throws IOException {
         int size = args.size();
-        if (size < 2) {
+        if (size < 1) {
             System.out.println(MSG_TOO_FEW);
             return;
         }

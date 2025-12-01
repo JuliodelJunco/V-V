@@ -19,7 +19,7 @@ public class FileServiceImpl implements FileService {
         File sizeFile = new File(filePath);
         if (sizeFile.exists()){
             long size = sizeFile.length();
-            if (size < Math.pow(1024, 1)) return size + " bytes";
+            if (size < Math.pow(1024, 2)) return size + " bytes";
             else if (size < Math.pow(1024, 2) && size >= Math.pow(1024, 1)) return size / Math.pow(1024, 1) + " kilobytes";
             else if (size < Math.pow(1024, 3) && size >= Math.pow(1024, 2)) return size / Math.pow(1024, 2) + " megabytes";
             else if (size < Math.pow(1024, 4) && size >= Math.pow(1024, 3)) return size / Math.pow(1024, 3) + " gigabytes";
@@ -41,7 +41,7 @@ public class FileServiceImpl implements FileService {
         if (typeFile.exists()){
             String name = typeFile.getName();
             int dot = name.lastIndexOf(".");
-            return name.substring(dot+1);
+            return name.substring(dot-1);
         }else throw new IOException("No file given. Please provide a file.");
     }
 
